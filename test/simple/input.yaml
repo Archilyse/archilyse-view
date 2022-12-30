@@ -1,0 +1,43 @@
+quavis:
+  header:
+    name: "Simple Test Run"
+  sceneObjects:
+    - type: "indexedArray"
+      positions: [0.5, -0.5, 0, 0.5, -0.5, 0,  1.0, 0, 0]
+      vertexData: [1.0, 0.0, 0.0, 1.0, 0.0 , 0.0 , 1.0, 1.0,  0.0 , 0.0 , 0.0, 1.0]
+      indices:  [0, 1, 2]
+      modelMatrix: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+      material:
+        type: "vertexData"
+    - type: "unitCube"
+      modelMatrix: [0.1000, 0, 0, 0, 0, 0.1000, 0, 0, 0, 0, 0.1000, 0, 0, 0, 0, 1]
+      material:
+        type: "environmentMap"
+        cubeFaces:
+          - ./glacier_0.png
+          - ./glacier_1.png
+          - ./glacier_2.png
+          - ./glacier_3.png
+          - ./glacier_4.png
+          - ./glacier_5.png
+  observationPoints:
+    positions: [0, 0, 0, 4, 10, 0]
+    fieldOfViews: [360, 360]
+    viewDirections: [1, 0, 0, 1, 0, 0]
+  rendering:
+    renderWidth: 256
+    renderHeight: 256
+  computeStages:
+    - type: "volume"
+      name: "volume"
+    - type: "area"
+      name: "area"
+    - type: "groups"
+      name: "groups"
+    - type: "cubeMap"
+      name: "CubeMap"
+      pretty: false
+  output:
+    filename: "output.json" 
+    imagesType: "png"
+    imageNaming: "{0:0>4}_{1}.png"
